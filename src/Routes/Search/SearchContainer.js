@@ -11,6 +11,7 @@ export default class extends React.Component {
     error: null
   };
 
+  /* searchTerm이 공백이 아닌 것을 체크 하고, 그 다음에 searchByTerm을 실행하게 함 */
   handleSubmit = () => {
     const { searchTerm } = this.state;
     if (searchTerm !== "") {
@@ -20,7 +21,7 @@ export default class extends React.Component {
 
   searchByTerm = async () => {
     const { searchTerm } = this.state;
-    this.setState({ loading: true });
+    this.setState({ loading: true }); //타아핑 후 검색 했을 경우, 로딩 => true
     try {
       const {
         data: { results: movieResults }
@@ -33,9 +34,13 @@ export default class extends React.Component {
         tvResults
       });
     } catch {
-      this.setState({ error: "Can't find results." });
+      this.setState({
+        error: "Can't find results."
+      });
     } finally {
-      this.setState({ loading: false });
+      this.setState({
+        loading: false
+      });
     }
   };
   render() {
