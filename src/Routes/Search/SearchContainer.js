@@ -8,19 +8,27 @@ export default class extends React.Component {
     tvResults: null,
     loading: false,
     error: null,
-    searchTerm: ""
+    searchTerm: "",
+    pastTerm: "123"
   };
 
   /* searchTerm이 공백이 아닌 것을 체크 하고, 그 다음에 searchByTerm을 실행하게 함 */
-  handleSubmit = () => {
+  handleSubmit = event => {
+    if (event) event.preventDefault(); //Submit시 새로고침 방지
     const { searchTerm } = this.state;
-    if (searchTerm !== "") {
-      this.searchByTerm();
-    }
+    if (searchTerm !== "") this.searchByTerm();
+  };
+
+  updateTerm = event => {
+    const {
+      target: { value }
+    } = event;
+    this.setState({ searchTerm: value });
   };
 
   searchByTerm = async () => {
     const { searchTerm } = this.state;
+    this.setState({ pastTerm: searchTerm });
     this.setState({ loading: true }); //타아핑 후 검색 했을 경우, 로딩 => true
     try {
       const {
@@ -44,7 +52,14 @@ export default class extends React.Component {
     }
   };
   render() {
-    const { movieResults, tvResults, loading, error, searchTerm } = this.state;
+    const {
+      movieResults,
+      tvResults,
+      loading,
+      error,
+      searchTerm,
+      pastTerm
+    } = this.state;
     return (
       <SearchPresenter
         movieResults={movieResults}
@@ -52,7 +67,9 @@ export default class extends React.Component {
         loading={loading}
         error={error}
         searchTerm={searchTerm}
+        pastTerm={pastTerm}
         handleSubmit={this.handleSubmit}
+        updateTerm={this.updateTerm}
       />
     );
   }
