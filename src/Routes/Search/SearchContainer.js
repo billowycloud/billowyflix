@@ -6,9 +6,9 @@ export default class extends React.Component {
   state = {
     movieResults: null,
     tvResults: null,
-    searchTerm: "",
     loading: false,
-    error: null
+    error: null,
+    searchTerm: ""
   };
 
   /* searchTerm이 공백이 아닌 것을 체크 하고, 그 다음에 searchByTerm을 실행하게 함 */
@@ -44,14 +44,14 @@ export default class extends React.Component {
     }
   };
   render() {
-    const { movieResults, tvResults, searchTerm, loading, error } = this.state;
+    const { movieResults, tvResults, loading, error, searchTerm } = this.state;
     return (
       <SearchPresenter
         movieResults={movieResults}
         tvResults={tvResults}
-        searchTerm={searchTerm}
         loading={loading}
         error={error}
+        searchTerm={searchTerm}
         handleSubmit={this.handleSubmit}
       />
     );
