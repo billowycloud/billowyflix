@@ -1,4 +1,5 @@
 import React from "react";
+import Helmet from "react-helmet";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -12,6 +13,9 @@ const Container = styled.div`
 
 export default () => (
   <Container>
+    <Helmet>
+      <title>Loading | BILLOWYFLIX</title>　
+    </Helmet>
     <span role="img" aria-label="Loading">
       ⏰
     </span>

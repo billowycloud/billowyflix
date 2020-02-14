@@ -1,4 +1,5 @@
 import React from "react";
+import Helmet from "react-helmet";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Section from "Components/Section";
@@ -15,6 +16,9 @@ const TVPresenter = ({ topRated, popular, airingToday, loading, error }) =>
     <Loader />
   ) : (
     <Container>
+      <Helmet>
+        <title>TV Shows | BILLOWYFLIX</title>
+      </Helmet>
       {topRated && topRated.length > 0 && (
         <Section title="Top Rated Shows">
           {topRated.map(show => (
