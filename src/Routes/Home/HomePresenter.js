@@ -7,7 +7,7 @@ import Message from "Components/Message";
 import Poster from "Components/Poster";
 
 const Container = styled.div`
-  padding: 0px 20px;
+  padding: 20px;
 `;
 /* loading할때 nowPlaying은 존재X */
 const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) =>
